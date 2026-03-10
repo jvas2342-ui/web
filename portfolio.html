@@ -56,13 +56,29 @@ animation:glitch .5s infinite;
 }
 
 @keyframes glitch{
-0%{text-shadow:3px 3px blue}
+0%{text-shadow:3px 3px red}
 25%{text-shadow:-3px 2px white}
-50%{text-shadow:3px -2px green}
+50%{text-shadow:3px -2px red}
 75%{text-shadow:-2px -2px white}
-100%{text-shadow:3px 3px lightblue}
+100%{text-shadow:3px 3px red}
 }
-
+.cursor{
+position:fixed;
+width:16px;
+height:16px;clip-path: polygon(
+      50% 0%, 61% 35%, 98% 35%, 68% 57%, 
+      79% 91%, 50% 70%, 21% 91%, 32% 57%, 
+      2% 35%, 39% 35%
+    ); /* star shape */
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    transition: transform 0.05s ease-out;
+border-radius:60%;
+background:green;
+box-shadow:0 0 15px white;
+pointer-events:none;
+mix-blend-mode:screen;
+}
 /* NAV */
 
 nav{
@@ -91,8 +107,8 @@ padding:40px;
 
 .gallery img{
 width:100%;
-filter:grayscale(100%) contrast(120%);
-cursor:pointer;
+filter:grayscale(25%) contrast(100%);
+cursor:none;
 transition:0.4s;
 }
 
@@ -119,6 +135,7 @@ z-index:999;
 .viewer img{
 max-width:90%;
 max-height:90%;
+
 }
 
 /* CLOSE BUTTON */
@@ -128,7 +145,7 @@ position:absolute;
 top:30px;
 right:40px;
 font-size:40px;
-cursor:pointer;
+cursor:none;
 }
 
 footer{
@@ -158,15 +175,12 @@ font-size:12px;
 </nav>
 
 </header>
-
+<div class="fog"></div>
+<div class="cursor"></div>
 <section class="gallery">
 
-<img src="art1.jpg">
-<img src="art2.jpg">
-<img src="art3.jpg">
-<img src="art4.jpg">
-<img src="art5.jpg">
-<img src="art6.jpg">
+<img src="https://images.pexels.com/photos/302743/pexels-photo-302743.jpeg">
+<img src="https://images.pexels.com/photos/302743/pexels-photo-302743.jpeg">
 
 </section>
 
@@ -223,12 +237,10 @@ document.addEventListener("mousemove",e=>{
 cursor.style.left=e.clientX+"px";
 cursor.style.top=e.clientY+"px";
 });
+
 </script>
 
 </body>
 </html>
-
-
-
 
 
