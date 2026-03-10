@@ -19,6 +19,7 @@ background:black;
 color:white;
 font-family:'Special Elite', monospace;
 overflow-x:hidden;
+cursor:none;
 }
 
 /* VHS SCANLINES */
@@ -61,7 +62,23 @@ animation:glitch .5s infinite;
 75%{text-shadow:-2px -2px white}
 100%{text-shadow:3px 3px lightblue}
 }
-
+.cursor{
+position:fixed;
+width:16px;
+height:16px;clip-path: polygon(
+      50% 0%, 61% 35%, 98% 35%, 68% 57%, 
+      79% 91%, 50% 70%, 21% 91%, 32% 57%, 
+      2% 35%, 39% 35%
+    ); /* star shape */
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    transition: transform 0.05s ease-out;
+border-radius:60%;
+background:green;
+box-shadow:0 0 15px white;
+pointer-events:none;
+mix-blend-mode:screen;
+}
 /* NAV */
 
 nav{
@@ -214,11 +231,19 @@ viewer.onclick = ()=>{
 viewer.style.display="none"
 
 }
+/* BLOOD CURSOR */
 
+const cursor=document.querySelector(".cursor");
+
+document.addEventListener("mousemove",e=>{
+cursor.style.left=e.clientX+"px";
+cursor.style.top=e.clientY+"px";
+});
 </script>
 
 </body>
 </html>
+
 
 
 
