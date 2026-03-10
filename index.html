@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jacquard+12&family=Manufacturing+Consent&family=Rubik+Burned&family=Sixtyfour&display=swap" rel="stylesheet">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>switchbeats</title>
+
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Special+Elite&display=swap" rel="stylesheet">
+
+<style>
+
+/* BODY */
+
+body{
+margin:0;
+background:black;
+color:white;
+font-family:'Special Elite', monospace;
+overflow-x:hidden;
+cursor:none;
+}
+
+/* VHS SCANLINES */
+
+body::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:repeating-linear-gradient(
+0deg,
+rgba(255,255,255,0.05),
+rgba(255,255,255,0.05) 1px,
+transparent 1px,
+transparent 3px
+);
+pointer-events:none;
+z-index:3;
+}
+
+/* FOG */
+
+.fog{
+position:fixed;
+width:200%;
+height:200%;
+background:url(https://images.pexels.com/photos/34932556/pexels-photo-34932556.jpeg);
+opacity:0.08;
+animation:fogMove 60s linear infinite;
+z-index:1;
+}
+
+@keyframes fogMove{
+0%{transform:translate(0,0)}
+100%{transform:translate(-50%,-50%)}
+}
+
+/* CURSOR */
+
+.cursor{
+position:fixed;
+width:16px;
+height:16px;clip-path: polygon(
+      50% 0%, 61% 35%, 98% 35%, 68% 57%, 
+      79% 91%, 50% 70%, 21% 91%, 32% 57%, 
+      2% 35%, 39% 35%
+    ); /* star shape */
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    transition: transform 0.05s ease-out;
+border-radius:60%;
+background:red;
+box-shadow:0 0 15px white;
+pointer-events:none;
+mix-blend-mode:screen;
+}
+
+/* CONTAINER */
+
+.container{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+min-height:100vh;
+text-align:center;
+position:relative;
+z-index:2;
+padding:40px;
+}
+
+/* TITLE */
+
+h1{
+font-family: "Jacquard 12", system-ui;
+font-size:85px;
+letter-spacing:0px;
+margin-bottom:40px;
+animation:glitch .5s infinite;
+}
+
+/* GLITCH */
+
+@keyframes glitch{
+0%{text-shadow:3px 3px blue}
+25%{text-shadow:-3px 2px white}
+50%{text-shadow:3px -2px green}
+75%{text-shadow:-2px -2px white}
+100%{text-shadow:3px 3px lightblue}
+}
+
+/* ALBUM */
+
+.album{
+width:200px;
+height:200px;
+border-radius:50%;
+margin-bottom:0px;
+animation:spin 8s linear infinite;
+filter:grayscale(100%) contrast(150%);
+}
+
+@keyframes spin{
+0%{transform:rotate(0)}
+100%{transform:rotate(deg)}
+}
+
+/* LINKS */
+
+.link{
+display:block;
+width:260px;
+padding:16px;
+margin:14px 0;
+text-decoration:none;
+border:1px solid white;
+color:white;
+letter-spacing:2px;
+background:black;
+transition:0.25s;
+}
+
+.link:hover{
+background:red;
+border-color:red;
+transform:scale(1.1);
+}
+
+/* PLAYER */
+
+.spotify{
+margin-top:40px;
+width:320px;
+max-width:90%;
+}
+
+/* FOOTER */
+
+footer{
+margin-top:50px;
+opacity:0.6;
+font-size:12px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="fog"></div>
+<div class="cursor"></div>
+
+<div class="container">
+
+<img src="https://tse1.explicit.bing.net/th/id/OIP.hty5fKf3pgpWStw2nYU_zgHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" class="album">
+
+<h1>Switch</h1>
+
+<a class="link" href="#">SPOTIFY</a>
+<a class="link" href="#">SOUNDCLOUD</a>
+<a class="link" href="#">YOUTUBE</a>
+<a class="link" href="#">INSTAGRAM</a>
+<a class="link" href="#">ART</a>
+
+<iframe class="spotify"
+src="https://open.spotify.com/embed/track/68qpjOo2mKJ7TVxFF4rEXW"
+width="100%"
+height="80"
+frameBorder="0"
+allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+</iframe>
+
+<footer>© SwitchBeats 2026</footer>
+
+</div>
+
+<script>
+
+/* BLOOD CURSOR */
+
+const cursor=document.querySelector(".cursor");
+
+document.addEventListener("mousemove",e=>{
+cursor.style.left=e.clientX+"px";
+cursor.style.top=e.clientY+"px";
+});
+
+</script>
+
+</body>
+</html>
